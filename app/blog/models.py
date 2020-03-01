@@ -15,6 +15,10 @@ class Blog(models.Model):
 
 
 class Comment(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     comment_user = models.CharField(max_length=100, default='匿名')
-    comment = models.CharField(max_length=256, null=False)
+    discuss = models.CharField(max_length=256, null=False)
     likes = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['id']

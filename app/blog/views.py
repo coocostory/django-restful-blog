@@ -1,12 +1,15 @@
 from django.shortcuts import render
 
 from rest_framework import viewsets
-from .models import Blog
-from .serializers import BlogSerializer
+from .models import Blog, Comment
+from .serializers import BlogSerializer, CommentSerializer
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from .others.blogpagenation import BlogPagination as BasicPagination
+
+from .others.permission import Public
 
 
 # from rest_framework.authentication import TokenAuthentication
@@ -16,9 +19,17 @@ from rest_framework.response import Response
 class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
-    from .others.blogpagenation import BlogPagination
-    pagination_class = BlogPagination
+
+    pagination_class = BasicPagination
     authentication_classes = [TokenAuthentication]
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+    pagination_class = BasicPagination
+    permission_classes = (Public,)
 
 
 class CustomToken(ObtainAuthToken):

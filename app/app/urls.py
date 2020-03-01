@@ -13,6 +13,6 @@ router.register(r'blog', views.BlogViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    url(r'^api-token-auth/', authviews.obtain_auth_token)
+    url(r'^api-token-auth/', views.CustomToken.as_view())
     # url(r'^login/', obtain_jwt_token),  # jwt login
 ]

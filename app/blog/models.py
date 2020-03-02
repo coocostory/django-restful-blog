@@ -28,8 +28,8 @@ class Course(models.Model):
     name = models.CharField(max_length=36)  # 课程名
     period = models.CharField(max_length=36)  # 开课时段
     classes1 = models.CharField(max_length=36, null=False)  # 课程分类
-    classes2 = models.CharField(max_length=36)
-    classes3 = models.CharField(max_length=36)
+    classes2 = models.CharField(max_length=36, null=True)
+    classes3 = models.CharField(max_length=36, null=True)
 
 
 class CourseDetail(models.Model):

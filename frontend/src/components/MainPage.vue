@@ -11,6 +11,7 @@
 <script>
 import HeaderNav from "components/HeaderNav";
 import FootNav from "components/FootNav";
+
 export default {
   name: "MainPage",
   components: {

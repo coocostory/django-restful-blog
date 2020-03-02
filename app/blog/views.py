@@ -37,13 +37,15 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
-    permission_classes = [AllowAny]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class CourseDetailViewSet(viewsets.ModelViewSet):
     queryset = CourseDetail.objects.all()
     serializer_class = CourseDetailSerializer
 
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
 

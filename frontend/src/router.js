@@ -3,11 +3,20 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const routes = [
+const MainPageMain = () => import('components/MainPageMain')
 
+const routes = [
+  {
+    path: '/',
+    redirect: '/home'
+  },
+  {
+    path:'/home',
+    component: MainPageMain
+  }
 ]
 
 export default new Router({
   mode: 'history',
-  base: process.env.BASE_URL
+  routes: routes
 })

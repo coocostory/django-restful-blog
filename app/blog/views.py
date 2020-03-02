@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 from rest_framework import viewsets
-from .models import Blog, Comment
-from .serializers import BlogSerializer, CommentSerializer
+from .models import Blog, Comment, Course, CourseDetail
+from .serializers import BlogSerializer, CommentSerializer, CourseDetailSerializer, CourseSerializer
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -30,6 +30,18 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     pagination_class = BasicPagination
     permission_classes = (Public,)
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+    permission_classes = (Public,)
+
+
+class CourseDetailViewSet(viewsets.ModelViewSet):
+    queryset = CourseDetail.objects.all()
+    serializer_class = CourseDetailSerializer
 
 
 class CustomToken(ObtainAuthToken):

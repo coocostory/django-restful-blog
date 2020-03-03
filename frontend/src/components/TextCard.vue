@@ -1,31 +1,31 @@
 <template>
   <div class="textcard">
     <el-card class="box-card">
-      <div id="tempory">
-        <div v-for="blog in blogs" :key="blog.id">
-          <h2>{{ blog.title }}</h2>
-          <p>{{ blog.content }}</p>
-          <p>发布时间:{{ blog.created }}</p>
-        </div>
-      </div>
+      <div id="title">{{ blog.title }}</div>
+      <div id="context">{{ blog.content }}</div>
+      <div id="pubdate">发布时间:{{ pubdate }}</div>
     </el-card>
   </div>
 </template>
 
 <script>
-import {getBlog} from 'network/home'
-
 export default {
   name: "textcard",
+  props: {
+    blog: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
+  },
   data() {
     return {
-      blogs: []
+      pubdate:
+        this.blog.created.substring(0, 10) +
+        " " +
+        this.blog.created.substring(11, 19)
     };
-  },
-  created() {
-    getBlog().then(res => {
-      this.blogs = res.data.results
-    })
   }
 };
 </script>
@@ -40,6 +40,20 @@ export default {
 }
 
 .box-card {
-  width: 480px;
+  width: 880px;
+}
+
+#title {
+  margin: -7px 0 4px;
+  display: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+#pubdate {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #787878
 }
 </style>

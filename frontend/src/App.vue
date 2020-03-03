@@ -8,6 +8,8 @@
 import MainPage from 'components/MainPage'
 
 export default {
+  created() {
+  },
   components: {
     MainPage
   }

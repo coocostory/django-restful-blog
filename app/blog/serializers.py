@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.pagination import PageNumberPagination
-from .models import Blog, Comment, Course, CourseDetail
+from .models import Blog, Comment, Course, Coursedetail
 
 
 class BlogSerializer(serializers.ModelSerializer):
@@ -21,7 +21,7 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CourseDetailSerializer(serializers.ModelSerializer):
+class CoursedetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CourseDetail
+        model = Coursedetail
         fields = '__all__'

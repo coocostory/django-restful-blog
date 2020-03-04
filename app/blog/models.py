@@ -11,7 +11,7 @@ class Blog(models.Model):
     likes = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ['created']
+        ordering = ['-created']
 
 
 class Comment(models.Model):
@@ -21,7 +21,7 @@ class Comment(models.Model):
     likes = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ['id']
+        ordering = ['-id']
 
 
 class Course(models.Model):
@@ -31,7 +31,13 @@ class Course(models.Model):
     classes2 = models.CharField(max_length=36, null=True)
     classes3 = models.CharField(max_length=36, null=True)
 
+    class Meta:
+        ordering = ['-id']
 
-class CourseDetail(models.Model):
+
+class Coursedetail(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     detail = models.TextField()
+
+    class Meta:
+        ordering = ['-id']

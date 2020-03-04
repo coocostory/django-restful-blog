@@ -11,7 +11,7 @@ router = DefaultRouter()
 router.register(r'blog', views.BlogViewSet)
 router.register(r'comment', views.CommentViewSet)
 router.register(r'course', views.CourseViewSet)
-router.register(r'coursedetail', views.CourseDetailViewSet)
+router.register(r'coursedetail', views.CoursedetailViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

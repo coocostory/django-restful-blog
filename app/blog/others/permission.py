@@ -11,7 +11,3 @@ class Read(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         return obj.user == request.user
-    # def has_permission(self, request, view):
-    #     if request.method == 'POST':
-    #         return permissions.IsAuthenticated
-    #     return True

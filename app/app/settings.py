@@ -24,7 +24,8 @@ SECRET_KEY = 'bvern5rgv*h8j4ly39t5joe4o#vqr^l)a(3f1s+aj(h7c7fl1&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+]
 
 # Application definition
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'rest_framework.authtoken',
     'corsheaders',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -53,9 +55,13 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    '127.0.0.1:8080',
-    'http://192.168.1.107',
+    '*',
+    'http://127.0.0.1:8080/'
+    'http://127.0.0.1:8080'
 )
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'app.urls'
 
@@ -131,4 +137,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.AutoSchema'
 }

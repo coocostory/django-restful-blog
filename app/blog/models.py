@@ -36,7 +36,7 @@ class Course(models.Model):
 
 
 class Coursedetail(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE,unique=True)
     detail = models.TextField()
 
     class Meta:

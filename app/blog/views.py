@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, generics
 from .models import Blog, Comment, Course, Coursedetail, User
 from .serializers import BlogSerializer, CommentSerializer, CoursedetailSerializer, CourseSerializer
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
@@ -46,7 +46,21 @@ class CoursedetailViewSet(viewsets.ModelViewSet):
     serializer_class = CoursedetailSerializer
 
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class CoursedetailList(generics.ListAPIView):
+    print("in")
+    serializer_class = CoursedetailSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        """
+        根据courseid返回课程详情
+        """
+        courseid = self.kwargs['courseid']
+        print(".........", courseid, "..........")
+        return Coursedetail.objects.filter(course=courseid)
 
 
 class CustomToken(ObtainAuthToken):
